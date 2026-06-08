@@ -279,27 +279,16 @@
 </div>
 
 <script>
-  const VCARD = `BEGIN:VCARD
-VERSION:3.0
-FN:Therese Grittner
-N:Grittner;Therese;;;
-ORG:TaG Makes
-TITLE:AI Recommendation Optimization
-TEL;TYPE=CELL:+18436088724
-EMAIL:therese@tagmakessc.com
-URL:https://aroindex.com
-URL;TYPE=WORK:https://tagmakessc.com
-NOTE:aroindex.com · tagmakessc.com
-END:VCARD`;
+  const VCARD = `BEGIN:VCARD\nVERSION:3.0\nFN:Therese Grittner\nORG:TaG Makes\nTEL:+18436088724\nEMAIL:therese@tagmakessc.com\nURL:https://aroindex.com\nURL:https://tagmakessc.com\nEND:VCARD`;
 
-  // Generate QR — encodes the hosted URL so scanners get the full interactive card
+  // CorrectLevel.L fits more data — needed for vCard with two URLs
   new QRCode(document.getElementById("qr"), {
-    text: "https://tagmakes-maker.github.io/therese-card/",
+    text: VCARD,
     width: 200,
     height: 200,
     colorDark: "#0E0E10",
     colorLight: "#F4F2EE",
-    correctLevel: QRCode.CorrectLevel.M
+    correctLevel: QRCode.CorrectLevel.L
   });
 
   // Inject apple-touch-icon dynamically (pink "TG" on dark bg)
