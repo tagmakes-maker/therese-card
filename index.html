@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Therese Grittner — TaG Makes</title>
+
+  <!-- PWA / Home Screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Therese">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0E0E10">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- OG -->
+  <meta property="og:title" content="Therese Grittner — TaG Makes">
+  <meta property="og:description" content="AI Recommendation Optimization — aroindex.com">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #E92a97;
+      --teal: #71C9CB;
+      --bg: #0E0E10;
+      --surface: #16161A;
+      --border: #26262C;
+      --text: #F4F2EE;
+      --muted: #9A968F;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 360px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 28px 28px 24px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .pink-bar {
+      width: 32px;
+      height: 3px;
+      background: var(--pink);
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .qr-section {
+      padding: 24px 28px;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    #qr canvas, #qr img {
+      border-radius: 10px;
+      display: block;
+    }
+
+    .info-section {
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .info-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--pink);
+      flex-shrink: 0;
+    }
+
+    .info-dot.teal {
+      background: var(--teal);
+    }
+
+    .info-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .info-value a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .actions {
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn:active { opacity: 0.75; }
+
+    .btn-primary {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .hint {
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      padding: 0 28px 20px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      /* already dark */
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .card {
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #111;
+        border-radius: 0;
+        max-width: 100%;
+      }
+      .card-header { border-color: #ddd; }
+      h1 { color: #111; }
+      .subtitle, .info-label, .hint { color: #888; }
+      .info-value, .info-value a { color: #111; }
+      .qr-section { background: #fff; border-color: #ddd; }
+      .info-section { border-color: #ddd; }
+      .btn-ghost { display: none; }
+      .btn-secondary { border-color: #71C9CB; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <div class="pink-bar"></div>
+    <div class="eyebrow">TaG Makes</div>
+    <h1>Therese Grittner</h1>
+    <p class="subtitle">AI Recommendation Optimization</p>
+  </div>
+
+  <div class="qr-section">
+    <div id="qr"></div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-row">
+      <div class="info-dot"></div>
+      <div>
+        <div class="info-label">Platforms</div>
+        <div class="info-value">
+          <a href="https://aroindex.com" target="_blank">aroindex.com</a>
+          &nbsp;·&nbsp;
+          <a href="https://tagmakessc.com" target="_blank">tagmakessc.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-dot teal"></div>
+      <div>
+        <div class="info-label">Phone</div>
+        <div class="info-value"><a href="tel:+18436088724">843-608-8724</a></div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-dot teal"></div>
+      <div>
+        <div class="info-label">Email</div>
+        <div class="info-value"><a href="mailto:therese@tagmakessc.com">therese@tagmakessc.com</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="saveContact()">Save contact</button>
+    <button class="btn btn-secondary" onclick="addToCalendar()">Add "Met Therese" to calendar</button>
+    <button class="btn btn-ghost" onclick="window.print()">Print card</button>
+  </div>
+
+  <p class="hint">Scan QR to save contact instantly</p>
+</div>
+
+<script>
+  const VCARD = `BEGIN:VCARD
+VERSION:3.0
+FN:Therese Grittner
+N:Grittner;Therese;;;
+ORG:TaG Makes
+TITLE:AI Recommendation Optimization
+TEL;TYPE=CELL:+18436088724
+EMAIL:therese@tagmakessc.com
+URL:https://aroindex.com
+URL;TYPE=WORK:https://tagmakessc.com
+NOTE:aroindex.com · tagmakessc.com
+END:VCARD`;
+
+  // Generate QR
+  new QRCode(document.getElementById("qr"), {
+    text: VCARD,
+    width: 200,
+    height: 200,
+    colorDark: "#0E0E10",
+    colorLight: "#F4F2EE",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  // Inject apple-touch-icon dynamically (pink "TG" on dark bg)
+  window.addEventListener('load', () => {
+    const c = document.createElement('canvas');
+    c.width = 180; c.height = 180;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#0E0E10';
+    ctx.fillRect(0, 0, 180, 180);
+    // Pink accent stripe
+    ctx.fillStyle = '#E92a97';
+    ctx.fillRect(0, 0, 180, 5);
+    // Initials
+    ctx.fillStyle = '#F4F2EE';
+    ctx.font = 'bold 68px DM Sans, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('TG', 90, 95);
+    const link = document.createElement('link');
+    link.rel = 'apple-touch-icon';
+    link.href = c.toDataURL('image/png');
+    document.head.appendChild(link);
+  });
+
+  function saveContact() {
+    const blob = new Blob([VCARD], { type: "text/vcard" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "therese-grittner.vcf";
+    a.click();
+  }
+
+  function addToCalendar() {
+    const today = new Date();
+    const pad = n => String(n).padStart(2, "0");
+    const dateStr = `${today.getFullYear()}${pad(today.getMonth()+1)}${pad(today.getDate())}`;
+    const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//TaG Makes//EN\r\nBEGIN:VEVENT\r\nSUMMARY:Met Therese Grittner\r\nDTSTART;VALUE=DATE:${dateStr}\r\nDTEND;VALUE=DATE:${dateStr}\r\nDESCRIPTION:TaG Makes — AI Recommendation Optimization\\naroindex.com | tagmakessc.com | 843-608-8724\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+    const blob = new Blob([ics], { type: "text/calendar" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "met-therese-grittner.ics";
+    a.click();
+  }
+</script>
+
+</body>
+</html>
