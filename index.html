@@ -292,9 +292,9 @@ URL;TYPE=WORK:https://tagmakessc.com
 NOTE:aroindex.com · tagmakessc.com
 END:VCARD`;
 
-  // Generate QR
+  // Generate QR — encodes the hosted URL so scanners get the full interactive card
   new QRCode(document.getElementById("qr"), {
-    text: VCARD,
+    text: "https://tagmakes-maker.github.io/therese-card/",
     width: 200,
     height: 200,
     colorDark: "#0E0E10",
